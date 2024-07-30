@@ -1,0 +1,26 @@
+services:
+  api:
+    image: trading-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=redis://default:123123123@redis:6379
+      - PORT=3000
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+  redis:
+    image: redis:6.2.6
+    restart: always
+    command: redis-server --requirepass 123123123
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis:/data
+
+volumes:
+  redis:
+    name: redis-trading-db

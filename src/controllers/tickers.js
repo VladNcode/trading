@@ -1,3 +1,4 @@
+import { ONE_MINUTE_IN_SECONDS } from '../constants/constants.js';
 import { redisClient } from '../db/redisClient.js';
 import { getAskBidPrices } from '../utils/bignumber.js';
 
@@ -11,7 +12,7 @@ export const getTickers = async c => {
   } else {
     const response = await fetch('https://testnet.binancefuture.com/fapi/v1/ticker/price');
     apiData = await response.json();
-    await redisClient.setEx('ticker-data', 60, JSON.stringify(apiData));
+    await redisClient.setEx('ticker-data', ONE_MINUTE_IN_SECONDS, JSON.stringify(apiData));
   }
 
   const favorites = favoritesData ? JSON.parse(favoritesData) : {};

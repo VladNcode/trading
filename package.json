@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "node --watch --env-file=.env src/index.js",
     "start": "node src/index.js",
-    "lint": "npx biome check --write ./src"
+    "lint": "npx biome check --write ./src",
+    "test": "node --test"
   },
   "dependencies": {
     "@hono/node-server": "^1.12.0",

@@ -18,7 +18,7 @@ app.get('/static/*', serveStatic({ root: './' }));
 const port = process.env.PORT || 3000;
 export const server = serve({ fetch: app.fetch, port });
 
-pinoLogger.info(`Server is running on porn ${port}...`);
+pinoLogger.info(`Server is running on port ${port}...`);
 
 const shutdown =
   (code = 0) =>
